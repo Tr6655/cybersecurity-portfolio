@@ -1,4 +1,4 @@
-# SOC Log Analysis Lab using Splunk
+# SOC Brute-Force Detection Lab with Splunk
 
 ## Overview
 
