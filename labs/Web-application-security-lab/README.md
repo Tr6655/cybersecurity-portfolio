@@ -2,18 +2,18 @@
 
 ## Lab Overview
 
-This lab demonstrates a hands-on web application security testing lab using **OWASP Juice Shop, **Docker**, and **Burp Suite Community Edition**.
+This lab demonstrates a hands-on web application security testing lab using OWASP Juice Shop, Docker, and Burp Suite Community Edition.
 
 The objective of this lab was to simulate a basic web application security assessment by intercepting HTTP traffic, analyzing requests, and testing for common web vulnerabilities.
 
 ---
 # Vulnerability Mapping to OWASP Top 10
 
-| Test Performed             | OWASP Category                   | Description |
-| SQL Injection Testing      | A03:2021 – Injection             | Tested authentication input handling using manipulated login requests |
-| Broken Access Control      | A01:2021 – Broken Access Control | Modified object identifiers to test authorization enforcement |
-| Cross Site Scripting (XSS) | A03:2021 – Injection             | Tested user input fields for unsafe script rendering |
-| Authentication Testing     | A07:2021 – Identification and Authentication Failures | Evaluated login behavior using Burp Intruder |
+| Test Performed| OWASP Category| Description |
+| SQL Injection Testing | A03:2021 – Injection |Tested authentication input handling using manipulated login requests |
+| Broken Access Control | A01:2021 – Broken Access Control | Modified object identifiers to test authorization enforcement |
+| Cross Site Scripting (XSS)| A03:2021 – Injection | Tested user input fields for unsafe script rendering |
+| Authentication Testing| A07:2021 – Identification and Authentication Failures | Evaluated login behavior using Burp Intruder |
 
 # Attack Flow Example
 
