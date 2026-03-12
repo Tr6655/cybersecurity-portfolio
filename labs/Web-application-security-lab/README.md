@@ -8,7 +8,6 @@ The objective of this lab was to simulate a basic web application security asses
 
 ---
 # Vulnerability Mapping to OWASP Top 10
-## Vulnerability Mapping to OWASP Top 10
 
 | Test Performed | OWASP Category | Description | Tool Used | Evidence |
 |---|---|---|---|---|
