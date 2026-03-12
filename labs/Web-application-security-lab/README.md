@@ -1,1 +1,205 @@
+# Web Application Security Lab – OWASP Juice Shop (Windows)
 
+## Lab Overview
+
+This lab demonstrates a hands-on web application security testing lab using **OWASP Juice Shop, **Docker**, and **Burp Suite Community Edition**.
+
+The objective of this lab was to simulate a basic web application security assessment by intercepting HTTP traffic, analyzing requests, and testing for common web vulnerabilities.
+
+---
+# Vulnerability Mapping to OWASP Top 10
+
+| Test Performed             | OWASP Category                   | Description |
+| SQL Injection Testing      | A03:2021 – Injection             | Tested authentication input handling using manipulated login requests |
+| Broken Access Control      | A01:2021 – Broken Access Control | Modified object identifiers to test authorization enforcement |
+| Cross Site Scripting (XSS) | A03:2021 – Injection             | Tested user input fields for unsafe script rendering |
+| Authentication Testing     | A07:2021 – Identification and Authentication Failures | Evaluated login behavior using Burp Intruder |
+
+# Attack Flow Example
+
+User Browser
+     ↓
+Burp Suite Proxy
+     ↓
+HTTP Request Interception
+     ↓
+Parameter Manipulation
+     ↓
+Server Response Analysis
+
+# Security Testing Methodology
+
+The following testing methodology was used during this lab:
+
+1. **Application Reconnaissance**
+   - Explored application functionality
+   - Identified authentication features
+   - Observed API requests and parameters
+
+2. **Traffic Interception**
+   - Configured Burp Suite proxy
+   - Captured HTTP requests and responses
+   - Analyzed authentication requests
+
+3. **Request Manipulation**
+   - Sent requests to Burp Repeater
+   - Modified parameters and payloads
+   - Observed server behavior and responses
+
+4. **Authorization Testing**
+   - Manipulated object identifiers
+   - Tested access to unauthorized resources
+
+5. **Input Validation Testing**
+   - Injected test payloads into input fields
+   - Checked for script execution and input reflection
+
+6. **Authentication Testing**
+   - Used Burp Intruder to test login behavior
+   - Evaluated rate limiting and response patterns
+  
+# Step 1 – Run OWASP Juice Shop
+
+Start the vulnerable application using Docker.
+
+Command used:
+
+```powershell
+docker run --rm -p 3000:3000 bkimminich/juice-shop
+
+This launches the Juice Shop container and exposes the application on: http://localhost:3000
+
+Step 2 – Configure Burp Suite Proxy
+
+Burp Suite was used to intercept and analyze HTTP traffic between the browser and the application.
+
+Proxy listener configuration:
+
+127.0.0.1:8080
+
+Browser proxy settings were configured in Windows LAN settings.
+
+Step 3 – Capture Login Request
+
+After creating a test account and logging in, Burp intercepted the authentication request.
+
+Example intercepted request:
+
+POST /rest/user/login HTTP/1.1
+Host: localhost:3000
+Content-Type: application/json
+
+Example request body:
+
+{
+ "email":"test@test.com",
+ "password":"Test123!"
+}
+Intercepted Login Request
+
+Step 4 – Send Request to Repeater
+
+The captured login request was sent to Burp Repeater to allow manual manipulation and repeated testing.
+
+Process:
+
+Right click intercepted request
+
+Select Send to Repeater
+
+Modify parameters and resend requests
+
+Normal Login Request in Repeater
+
+Step 5 – SQL Injection Testing
+
+The password field was modified to test for possible SQL injection behavior.
+
+Original request:
+
+"password":"Test123!"
+
+Test payload used:
+
+"password":"' OR 1=1--"
+
+The modified request was sent using Burp Repeater to observe server responses.
+
+SQL Injection Test
+
+Step 6 – Broken Access Control Testing
+
+Authorization testing was performed by modifying object identifiers in intercepted requests.
+
+Example request:
+
+GET /rest/basket/1
+
+Modified request:
+
+GET /rest/basket/2
+
+This type of test checks whether the server validates ownership of objects.
+
+Broken Access Control Test
+
+Step 7 – Cross-Site Scripting (XSS) Testing
+
+Input fields were tested for script injection.
+
+Example payload used:
+
+<script>alert(1)</script>
+
+This payload checks whether the application properly sanitizes user input before rendering it in the browser.
+
+XSS Test
+
+Step 8 – Authentication Testing Using Burp Intruder
+
+The login request was sent to Burp Intruder to test authentication behavior.
+
+Steps:
+
+Capture login request
+
+Send to Intruder
+
+Mark password field as payload position
+
+Test multiple password attempts
+
+Example payload list:
+
+password
+123456
+admin
+test123
+
+# Remediation Recommendations
+
+The following recommendations can help mitigate the tested vulnerabilities.
+
+### SQL Injection
+
+- Use parameterized SQL queries
+- Implement server-side input validation
+- Avoid dynamic SQL query construction
+
+### Broken Access Control
+
+- Enforce authorization checks on the server
+- Validate user ownership of requested resources
+- Avoid relying on client-side access controls
+
+### Cross Site Scripting (XSS)
+
+- Implement proper output encoding
+- Use input validation for user supplied data
+- Consider implementing Content Security Policy (CSP)
+
+### Authentication Weakness
+
+- Implement login rate limiting
+- Use account lockout mechanisms
+- Implement multi-factor authentication
