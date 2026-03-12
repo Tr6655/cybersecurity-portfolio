@@ -78,4 +78,4 @@ Proxy listener configuration:
 
 127.0.0.1:8080
 
-Browser proxy settings were configured in Windows LAN settings.
+Browser proxy settings were configured in Windows LAN settings.  
