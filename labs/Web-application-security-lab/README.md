@@ -70,6 +70,8 @@ docker run --rm -p 3000:3000 bkimminich/juice-shop
 
 This launches the Juice Shop container and exposes the application on: http://localhost:3000
 
+## Juice Shop Home Page 
+
 # Step 2 – Configure Burp Suite Proxy
 
 Burp Suite was used to intercept and analyze HTTP traffic between the browser and the application.
@@ -80,7 +82,8 @@ Proxy listener configuration:
 
 Browser proxy settings were configured in Windows LAN settings.  
 
-# Step 3 - Capture Login Request 
+# Step 3 - Capture Login Request ![description](screenshots/01-juice-shop-home.png)
+
 After creating a test account and logging in, Burp intercepted the authentication request.
 
 Example intercepted request:
@@ -92,8 +95,22 @@ Content-Type: application/json
 Example request body:
 
 {
- "email":"test@test.com",
+ "email":"test1@test.com",
  "password":"Test123!"
 }
-Intercepted Login Request
+## Intercepted Login Request
+
+# Step 4 – Send Request to Repeater
+
+The captured login request was sent to Burp Repeater to allow manual manipulation and repeated testing.
+
+Process:
+
+Right click intercepted request
+
+Select Send to Repeater
+
+Modify parameters and resend requests
+
+## Normal Login Request in Repeater
 
