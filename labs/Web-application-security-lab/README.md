@@ -130,13 +130,13 @@ The modified request was sent using Burp Repeater to observe server responses.
 
 ## SQL Injection Test ![description](screenshots/04-sql-injection-test.png)
 
-Step 6 – Broken Access Control Testing
+# Step 6 – Broken Access Control Testing
 
 Authorization testing was performed by modifying object identifiers in intercepted requests.
 
 Example request:
 
-GET /rest/basket/1
+GET /rest/basket/6
 
 Modified request:
 
@@ -144,9 +144,9 @@ GET /rest/basket/2
 
 This type of test checks whether the server validates ownership of objects.
 
-Broken Access Control Test
+## Broken Access Control Test ![description](screenshots/05-broken-access-control.png)
 
-Step 7 – Cross-Site Scripting (XSS) Testing
+# Step 7 – Cross-Site Scripting (XSS) Testing
 
 Input fields were tested for script injection.
 
@@ -156,9 +156,9 @@ Example payload used:
 
 This payload checks whether the application properly sanitizes user input before rendering it in the browser.
 
-XSS Test
+## XSS Test  ![description](screenshots/06-xss-test.png)
 
-Step 8 – Authentication Testing Using Burp Intruder
+# Step 8 – Authentication Testing Using Burp Intruder
 
 The login request was sent to Burp Intruder to test authentication behavior.
 
@@ -178,7 +178,8 @@ password
 123456
 admin
 test123
-Authentication Testing
+
+## Authentication Testing  ![description](screenshots/07-authentication-testing.png)
 
 
 
