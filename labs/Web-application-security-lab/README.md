@@ -79,3 +79,21 @@ Proxy listener configuration:
 127.0.0.1:8080
 
 Browser proxy settings were configured in Windows LAN settings.  
+
+# Step 3 - Capture Login Request 
+After creating a test account and logging in, Burp intercepted the authentication request.
+
+Example intercepted request:
+
+POST /rest/user/login HTTP/1.1
+Host: localhost:3000
+Content-Type: application/json
+
+Example request body:
+
+{
+ "email":"test@test.com",
+ "password":"Test123!"
+}
+Intercepted Login Request
+
