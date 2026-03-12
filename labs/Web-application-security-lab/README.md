@@ -70,6 +70,7 @@ docker run --rm -p 3000:3000 bkimminich/juice-shop
 
 This launches the Juice Shop container and exposes the application on: http://localhost:3000
 
+# Step 2 – Run OWASP Juice Shop
 # **Step 2 – Configure Burp Suite Proxy** 
 
 Burp Suite was used to intercept and analyze HTTP traffic between the browser and the application.
